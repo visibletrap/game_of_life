@@ -21,6 +21,12 @@ describe Gol do
       end
     end
 
+    describe 'a dead cell', pending: true do
+      it "becomes alive with 3 neighbours" do
+        Gol.next_gen(Set.new([cell(-1,-1), cell(-1,1), cell(1,1)])).should == Set.new([cell(0,0)])
+      end
+    end
+
     def cell(x,y)
       Cell.new(x,y)
     end
