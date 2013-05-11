@@ -6,7 +6,7 @@ module Gol
   def self.calculate_for_living_cells(cells)
     new_cells = Set.new
     cells.each do |c|
-      if [2,3].include?(c.neighbours.select { |n| cells.include?(n) }.count)
+      if [2,3].include?(c.alive_neighbours_count(cells))
         new_cells << c
       end
     end
