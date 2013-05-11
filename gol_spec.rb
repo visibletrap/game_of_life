@@ -1,5 +1,4 @@
-require 'minitest/autorun'
-require 'set'
+require './position'
 
 module Gol
   def self.next_gen(world)
@@ -13,30 +12,6 @@ module Gol
   end
 end
 
-Position = Struct.new(:x,:y) do
-  def neighbours_pos
-    Set.new([pos(x-1,y-1), pos(x-1,y), pos(x-1,y+1), pos(x,y-1), pos(x,y+1), pos(x+1,y-1), pos(x+1,y), pos(x+1,y+1)])
-  end
-
-  private
-
-  def pos(x,y)
-    Position.new(x,y)
-  end
-end
-
-describe Position do
-  describe 'neighbours_pos' do
-    it "returns an set of neighbours position" do
-      assert_equal Position.new(1,1).neighbours_pos, Set.new([pos(0,0), pos(0,1), pos(0,2), pos(1,0), pos(1,2), pos(2,0), pos(2,1), pos(2,2)])
-    end
-  end
-
-  def pos(x,y)
-    Position.new(x,y)
-  end
-end
-
 class LiveCell 
   def ==(cell)
     cell.instance_of?(LiveCell)
@@ -46,15 +21,15 @@ end
 describe Gol do
   describe 'next_gen' do
     specify 'a live cell with 0 live neighbour dies' do
-      assert_equal Gol.next_gen({ Position.new(0,0) => LiveCell.new }), {}
+      Gol.next_gen({ Position.new(0,0) => LiveCell.new }).should == {}
     end
 
     specify 'a live cell with 2 live neighbour stays alive' do
-      assert_equal Gol.next_gen({ 
+      Gol.next_gen({ 
         Position.new(0,-1) => LiveCell.new,
         Position.new(0,0)  => LiveCell.new, 
         Position.new(0,1)  => LiveCell.new, 
-      }), {
+      }).should == {
         Position.new(0,0)  => LiveCell.new 
       }
     end
