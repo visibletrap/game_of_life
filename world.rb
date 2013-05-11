@@ -16,16 +16,16 @@ class World
   end
 
   def next_gen
-    World.new(*(judge_living_cells + revive_dead_cells))
+    World.new(*(retain_2_or_3_neighbours_living_neighbours_cells + revive_3_neighbours_dead_cells))
   end
 
   private
-  def judge_living_cells
-    cells.select { |c| [2,3].include?(c.alive_neighbours_count(cells)) }
+  def retain_2_or_3_neighbours_living_neighbours_cells
+    cells.select { |c| [2,3].include?(c.alive_neighbours_count(self)) }
   end
 
-  def revive_dead_cells
-    cells.inject([]) { |a,c| a.concat c.neighbours.to_a }
+  def revive_3_neighbours_dead_cells
+    cells.inject([]) { |a,c| a.concat c.neighbours }
           .group_by { |i| i }
           .select { |_,neighbours| neighbours.count == 3 }
           .map { |(c,_)| c }.flatten
