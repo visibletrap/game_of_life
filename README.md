@@ -1,6 +1,8 @@
 Conway's Game of Life
 =====================
 
+[![Code Climate](https://codeclimate.com/github/visibletrap/game_of_life.png)](https://codeclimate.com/github/visibletrap/game_of_life)
+
 [Rules](http://coderetreat.org/gol)
 
 Live cell represents as `Cell.new(x,y)`
