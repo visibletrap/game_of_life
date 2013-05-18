@@ -1,6 +1,7 @@
 Conway's Game of Life
 =====================
 
+[![Build Status](https://travis-ci.org/visibletrap/game_of_life.png?branch=master)](https://travis-ci.org/visibletrap/game_of_life)
 [![Code Climate](https://codeclimate.com/github/visibletrap/game_of_life.png)](https://codeclimate.com/github/visibletrap/game_of_life)
 
 [Rules](http://coderetreat.org/gol)
