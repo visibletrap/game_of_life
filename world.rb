@@ -17,11 +17,11 @@ class World
   end
 
   def next_gen
-    World.new(*(retain_2_or_3_neighbours_living_neighbours_cells + revive_3_neighbours_dead_cells))
+    World.new(*(retain_2_or_3_neighbours_living_cells + revive_3_neighbours_dead_cells))
   end
 
   private
-  def retain_2_or_3_neighbours_living_neighbours_cells
+  def retain_2_or_3_neighbours_living_cells
     cells.select { |c| [2,3].include?(c.alive_neighbours_count(self)) }
   end
 
